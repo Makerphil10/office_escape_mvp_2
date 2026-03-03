@@ -162,7 +162,9 @@ class Game:
         if not item_name:
             return "Take what? Specify an item name."
 
-        # TODO: handle "pick up <item>" syntax - currently breaks if player types "pick up keycard"
+        # Strip "up" prefix so "pick up <item>" works correctly
+        if item_name.startswith("up "):
+            item_name = item_name[3:]
 
         room = self.player.current_room
         if item_name in room.items:
